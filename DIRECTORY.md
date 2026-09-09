@@ -5,7 +5,7 @@ pilot who does not already know a publisher can find one. It is the layer that m
 *accessible from outside* true, and it is not built. This document fixes its rules before
 anyone builds it, because the one that matters most is easy to get wrong for convenience.
 
-The intended instance is `f-prompts.io`. The domain is unregistered.
+The instance is `frompt.org`, registered 2026-09-10; `frompt.dev` redirects there. Nothing is built.
 
 ## 1. Three things called index
 
@@ -28,7 +28,7 @@ This repository used *index* for the third thing once. It does not any more.
   copy-paste machine the ceremony exists to prevent (§C3, §PV1). Same rule as `INDEX.md`, one
   level up.
 - **D3.** A directory **MUST NOT** rank. Entries are ordered by name. Popularity, recency and
-  "verified" badges are all a verdict, and [`FPA.md`](https://github.com/f-prompts/fpa/blob/main/FPA.md) §15 already settled that this
+  "verified" badges are all a verdict, and [`FPA.md`](https://github.com/frompt-org/fpa/blob/main/FPA.md) §15 already settled that this
   project publishes observations and never verdicts.
 - **D4.** Listing is not admission and not endorsement; removal is not revocation. A catalog
   works exactly the same whether or not any directory lists it — that is what *a shape, not a
@@ -58,6 +58,6 @@ sentence is still behind the document, and the registration is still an act.
 
 ## 4. Status
 
-Not built. No domain. The rules above are the specification; the first implementation is a
+Not built. The rules above are the specification; the first implementation is a
 static `directory.json` plus a page that renders it, published by whoever registers the
 domain, and it should be the second directory rather than the only one within a year.
