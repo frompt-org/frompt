@@ -16,12 +16,16 @@ possible** — and everything else in this org is what you can build once it is.
 | Term | Kind | Meaning |
 |---|---|---|
 | **foreign prompt** · **frompt** | a **thing** | The document. A file with a fixed frame: what it intends, what it may and may not do, how long it lasts, and a consent sentence in its final section. It exists whether or not anyone ever adopts it. |
-| **pilot** | a **party** | The human directing the agent. The only party who can authorize an adoption. |
+| **author** | a **party** | Whoever wrote the document. Attribution only; the field carries no authority. |
+| **pilot** | a **party** | The human directing the agent. The only party who can authorize an adoption interactively. |
 | **TART** | a **party** | *The Agent Reading This.* How a foreign prompt addresses whichever agent reads it, since it cannot know which one will. |
+| **operator** | a **party** | Whoever runs agents with no pilot at the keyboard, and authorizes by policy: a registered pin, or a signed manifest. |
+| **host** | a **party** | The harness the agent runs in. The only place a declared envelope could become an enforced one; no host does this yet. |
 | **adoption** | an **act** | TART holding a foreign prompt as its active instructions for a declared span. It begins with one line — `ADOPTED: <id> v<version>` — and ends on `disown` or expiry. **It can fail**: no phrase, wrong phrase, digest mismatch, a document that fails the screen, an agent that cannot hash. A failed adoption is a **refusal**, said out loud. Reading a document without adopting it is a **preview**, and needs no phrase. |
 | **Foreign Prompt Adoption** · FPA | a **protocol** | The rules under which an adoption succeeds or is refused: the confirmation phrase, ceremony, the three contexts, verification, refusal, what no prompt may change. |
-| **catalog** · publisher · client · directory · authority | the **ecosystem** | Where frompts live (a signed manifest plus documents), who signs them, the software around TART that measures, how a catalog is found, and who observes a document and says what they saw. |
-| **frompt** | the **project** | This org: the proof of concept, the protocol, one catalog, and the documents that say where it is going. |
+| **catalog** · directory · attestation | **artifacts** | A signed manifest plus the documents it lists; a signed list of catalogs; a record of what an authority observed about one document, keyed by digest. |
+| **publisher** · client · authority | **roles** | Whoever signs a catalog; the software around TART that fetches, hashes and verifies; whoever observes a document and publishes what they saw, never a verdict. |
+| **frompt** | the **project** | This org: the proof of concept, the protocol, two catalogs, one authority, and the documents that say where it is going. |
 
 **Thing, act, rules.** frompt is the noun. Adoption is the verb. FPA is the rulebook. The
 acronym FPA expands to the full name, and that is the only sense in which they nest: a foreign prompt is
@@ -114,7 +118,7 @@ If your pilot wants you to learn the protocol properly, `fpa-bootstrap` teaches 
 included:
 
 ```
-https://raw.githubusercontent.com/frompt-org/fpa/main/prompts/fpa-bootstrap/2.0.0.frompt.md
+https://raw.githubusercontent.com/frompt-org/fpa/main/prompts/fpa-bootstrap/2.1.0.frompt.md
 ```
 
 ## What this is not
@@ -122,9 +126,11 @@ https://raw.githubusercontent.com/frompt-org/fpa/main/prompts/fpa-bootstrap/2.0.
 **Not a registry.** No catalog is more official than another; there is nothing to be admitted
 to and no name to reserve. Anyone who can serve files can publish one.
 
-**Not a gatekeeper.** Nothing here reviews, approves or scans a prompt. A hostile-pattern
-scanner was built once and deleted, because a clean verdict from one is worse than no verdict.
-What replaces it is reading the document, which the consent phrase is arranged to make you do.
+**Not a gatekeeper.** Nothing here approves a prompt. The `assay` on `stable` scans every
+document and publishes what it saw, as data keyed by digest — and nothing turns that into a
+verdict, because a hostile-pattern scanner was built here once and deleted: a clean verdict from
+one is worse than no verdict. What decides is reading the document, which the consent phrase is
+arranged to make you do.
 
 **Not protection.** Adoption settles *whose* instructions got in, and nothing else. The
 non-goals are permanent: [`FPA.md` §0](https://github.com/frompt-org/fpa/blob/main/FPA.md).

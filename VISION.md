@@ -134,8 +134,8 @@ mode, no LLM stage. First run, 2026-09-09:
 | Document | Score | Flags |
 |---|---|---|
 | the hostile fixture | **100 CRITICAL** | prompt injection, privilege escalation, supply chain, tool misuse |
-| `fpa-bootstrap` | 39 MEDIUM | excessive agency, rogue agent, supply chain |
-| nine others | 22–29 MEDIUM | rogue agent, supply chain |
+| `fpa-bootstrap` 2.1.0 | **57 HIGH** | prompt injection, excessive agency, rogue agent, supply chain — the document that teaches *what to refuse* scores highest, because it names it |
+| eight others | 22–29 MEDIUM | rogue agent, supply chain |
 | `pr-review`, `grill-me` | 6 LOW | rogue agent |
 
 It caught the hostile document. It also flagged every legitimate one, because a foreign
@@ -228,7 +228,7 @@ catalogs under two keys, and a realized authority (`assay`) attesting every docu
 
 **Specified, unbuilt** — the directory ([`DIRECTORY.md`](DIRECTORY.md)) and a level-3 client that maps envelope tokens onto real permissions ([`CLIENT.md`](https://github.com/frompt-org/fpa/blob/main/CLIENT.md)). Both have rules now so that building them is not also designing them.
 
-**Reserved, deliberately unbuilt** — the authority ([`FPA.md` §15](https://github.com/frompt-org/fpa/blob/main/FPA.md)), role scoping in the
+**Reserved, deliberately unbuilt** — the `run` kind of attestation and the authority *service* (the `static-scan` kind is realized by `assay`) ([`FPA.md` §15](https://github.com/frompt-org/fpa/blob/main/FPA.md)), role scoping in the
 manifest, and key rotation. Each has a seam so it can arrive without a protocol change; none has
 a use case sharp enough yet to design against.
 
@@ -242,7 +242,8 @@ built here once and deleted, because a clean verdict from one is worse than no v
 |---|---|
 | Protocol | v2, specified, 89 checks passing |
 | Agents observed adopting | 2 |
-| Catalogs published | 1, private |
+| Catalogs published | 2, private (reference, stable) |
+| Authorities realized | 1 — `assay`, static scan, every document in stable |
 | Publishers other than this one | 0 |
 | Pilots other than the author | 0 |
 
