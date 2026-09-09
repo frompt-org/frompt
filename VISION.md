@@ -75,7 +75,8 @@ and is deliberately not the only publisher the protocol expects:
 |---|---|---|
 | [`f-prompts/f-prompts`](https://github.com/f-prompts/f-prompts) | the umbrella — this homepage, the project documents, pointers to everything else | exists, **private** |
 | [`f-prompts/fpa`](https://github.com/f-prompts/fpa) | the protocol — spec, tools, reference prompts, conformance harness | exists, **private** |
-| [`f-prompts/reference`](https://github.com/f-prompts/reference) | the reference catalog — manifest, signature, documents | exists, **private** |
+| [`f-prompts/reference`](https://github.com/f-prompts/reference) | the reference catalog — the exemplar; what the docs and the conformance suite point at | exists, **private** |
+| [`f-prompts/stable`](https://github.com/f-prompts/stable) | the catalog you register — own key, seeded from reference, attested by `assay` | exists, **private** |
 | [`f-prompts/.github`](https://github.com/f-prompts/.github) | the org's public face — what a foreign prompt is, the three doors out, what an agent landing there should do | exists, **private** |
 
 The protocol was born in the `agent-realm` constellation and moved out on 2026-09-09, before
@@ -88,6 +89,61 @@ immutable artifacts with its own rules; the protocol repo is edited freely. `fp-
 crosses that boundary deliberately, and refuses to overwrite a published version with different
 bytes. That a catalog is its own small repo is also the demonstration of the claim above — it is
 a shape anyone can serve, and this one is not special for sitting next to the spec.
+
+### Catalogs are contexts
+
+Each catalog exists for one adoption context, and the difference is who supplies the digest.
+
+| Catalog | Context | The pilot supplies | Trusts | Like |
+|---|---|---|---|---|
+| **reference** | interactive | the phrase, digest included, per adoption | this document | reading a script before you run it |
+| **stable** | registered | a registration, once; then nothing | the `f-prompts-stable` key | apt, npm, yum |
+| **yours** | managed | operator policy | your key | an internal package mirror |
+
+*Without a digest* means the pilot stops typing one. The digest moves from the phrase into the
+signed manifest, and the client checks every fetched document against it. Nobody types a
+SHA256 for apt either; `Release` carries them, signed.
+
+The managed instance is not ours to build. The first one is stage 1: agent-realm's own
+catalog, its conventions as prompts, under the constellation's key.
+
+### The pipeline — a registry without a server
+
+What npm is to packages, this org is to foreign prompts, and it needs no server:
+
+| Piece | Is | Name |
+|---|---|---|
+| the catalog people register | a repo with a signed manifest | `stable` |
+| how catalogs are found | a signed `directory.json` | `directory` |
+| inspection and attestation | a workflow on `stable` that runs a scanner and commits what it saw | **`assay`** |
+| the front | a static site rendering the three | `f-prompts.io` |
+
+Submissions are pull requests. Nothing is admitted, ranked or approved. Anyone who can serve
+files can run the same pipeline, which is the claim.
+
+**Assay, not customs.** An assay office measures purity and stamps the result; it never
+approves the gold. Customs admits or refuses, which is a gate, which this is not.
+
+### What the assay saw, first run
+
+`assay` runs [SkillSpector](https://github.com/NVIDIA/SkillSpector) — NVIDIA's scanner for agent
+skills, sixteen thousand stars — over every document and stores its output keyed by digest,
+as data ([`FPA.md` §15](https://github.com/f-prompts/fpa/blob/main/FPA.md), AT1–AT6). Static
+mode, no LLM stage. First run, 2026-09-09:
+
+| Document | Score | Flags |
+|---|---|---|
+| the hostile fixture | **100 CRITICAL** | prompt injection, privilege escalation, supply chain, tool misuse |
+| `fpa-bootstrap` | 39 MEDIUM | excessive agency, rogue agent, supply chain |
+| nine others | 22–29 MEDIUM | rogue agent, supply chain |
+| `pr-review`, `grill-me` | 6 LOW | rogue agent |
+
+It caught the hostile document. It also flagged every legitimate one, because a foreign
+prompt addresses an agent in the second person and mentions URLs, which is what a scanner for
+skills is built to distrust. A threshold at MEDIUM would reject the whole catalog; a threshold
+above it would pass a rewritten hostile document — `huawei-csl/KillSkillSpector` is a public
+adversarial game that does exactly that. So the score is published and never acted on. That
+is AT2, demonstrated on the first afternoon.
 
 ### f-prompts.io — a directory, not a bigger catalog
 
@@ -153,9 +209,10 @@ both halves of that trade end to end.
 
 ## 7. Roadmap
 
-**Built and tested** — the protocol, 15 tools, 10 prompts across 12 documents, three adoption
+**Built and tested** — the protocol, 17 tools, 10 prompts across 12 documents, three adoption
 contexts, signed manifests with expiry and a per-catalog freshness floor, four transports, a
-plugin, and a conformance harness that has put two independent agents through six scenarios.
+plugin, a conformance harness that has put two independent agents through six scenarios, two
+catalogs under two keys, and a realized authority (`assay`) attesting every document in `stable`.
 
 **Next, in order:**
 

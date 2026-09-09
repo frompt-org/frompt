@@ -20,7 +20,7 @@ possible** — and everything else in this org is what you can build once it is.
 | **TART** | a **party** | *The Agent Reading This.* How a foreign prompt addresses whichever agent reads it, since it cannot know which one will. |
 | **adoption** | an **act** | TART holding a foreign prompt as its active instructions for a declared span. It begins with one line — `ADOPTED: <id> v<version>` — and ends on `disown` or expiry. **It can fail**: no phrase, wrong phrase, digest mismatch, a document that fails the screen, an agent that cannot hash. A failed adoption is a **refusal**, said out loud. Reading a document without adopting it is a **preview**, and needs no phrase. |
 | **Foreign Prompt Adoption** · FPA | a **protocol** | The rules under which an adoption succeeds or is refused: the confirmation phrase, ceremony, the three contexts, verification, refusal, what no prompt may change. |
-| **catalog** · publisher · client · directory | the **ecosystem** | Where FPs live (a signed manifest plus documents), who signs them, the software around TART that measures, and how a catalog is found. |
+| **catalog** · publisher · client · directory · authority | the **ecosystem** | Where FPs live (a signed manifest plus documents), who signs them, the software around TART that measures, how a catalog is found, and who observes a document and says what they saw. |
 | **f-prompts** | the **project** | This org: the proof of concept, the protocol, one catalog, and the documents that say where it is going. |
 
 **Thing, act, rules.** FP is the noun. Adoption is the verb. FPA is the rulebook. The
@@ -69,7 +69,8 @@ Singular is the thing, plural is the project. Nothing else.
 |---|---|---|
 | **`f-prompts`** | this umbrella — the homepage and the project documents | you are here |
 | [**`fpa`**](https://github.com/f-prompts/fpa) | the protocol: spec, client profile, tools, reference prompts, conformance harness | [`FPA.md`](https://github.com/f-prompts/fpa/blob/main/FPA.md) |
-| [**`reference`**](https://github.com/f-prompts/reference) | the reference catalog: a signed manifest and the documents it lists | its [README](https://github.com/f-prompts/reference#readme) |
+| [**`reference`**](https://github.com/f-prompts/reference) | the reference catalog: the exemplar, adopted interactively with a phrase | its [README](https://github.com/f-prompts/reference#readme) |
+| [**`stable`**](https://github.com/f-prompts/stable) | the catalog you register once and resolve from without typing a digest; every document attested by `assay` | its [README](https://github.com/f-prompts/stable#readme) |
 | `.github` | the org page | — |
 
 Standard and catalog are separate repositories on purpose: one is edited freely, the other
