@@ -69,7 +69,7 @@ Singular is the thing, plural is the project. Nothing else.
 |---|---|---|
 | **`f-prompts`** | this umbrella — the homepage and the project documents | you are here |
 | [**`fpa`**](https://github.com/f-prompts/fpa) | the protocol: spec, client profile, tools, reference prompts, conformance harness | [`FPA.md`](https://github.com/f-prompts/fpa/blob/main/FPA.md) |
-| [**`catalog`**](https://github.com/f-prompts/catalog) | the reference catalog: a signed manifest and the documents it lists | its [README](https://github.com/f-prompts/catalog#readme) |
+| [**`reference`**](https://github.com/f-prompts/reference) | the reference catalog: a signed manifest and the documents it lists | its [README](https://github.com/f-prompts/reference#readme) |
 | `.github` | the org page | — |
 
 Standard and catalog are separate repositories on purpose: one is edited freely, the other
@@ -87,7 +87,7 @@ to the spec.
 | What must the software around the agent do? | [`CLIENT.md`](https://github.com/f-prompts/fpa/blob/main/CLIENT.md) — four levels |
 | What am I trusting, and what am I not? | [`SECURITY.md`](https://github.com/f-prompts/fpa/blob/main/SECURITY.md) |
 | What do the words mean, and which ones collide? | [`TERMINOLOGY.md`](https://github.com/f-prompts/fpa/blob/main/TERMINOLOGY.md) — canon |
-| What is published, with digests? | [`INDEX.md`](https://github.com/f-prompts/catalog/blob/main/INDEX.md) — never consent sentences |
+| What is published, with digests? | [`INDEX.md`](https://github.com/f-prompts/reference/blob/main/INDEX.md) — never consent sentences |
 
 ## Three doors
 
