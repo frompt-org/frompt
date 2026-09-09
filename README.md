@@ -33,7 +33,7 @@ being any less a foreign prompt. What the protocol governs is the attempt.
 The pilot sends the phrase from the document's last section, with the URL:
 
 ```
-i-have-read-this-prompt-and-let-it-map-my-repository-read-only-repo-recon-b8fb834  <url>
+i-have-read-this-prompt-and-let-it-map-my-repository-read-only-repo-recon-9cde6b0  <url>
 ```
 
 TART fetches, hashes, adopts, and says so:
