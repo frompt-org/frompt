@@ -4,6 +4,11 @@
 adopted by an agent that did not write it.** Short: **frompt** — say *f-prompt* fast. Plural: **frompts**.
 "Foreign" names origin, never location — like a foreign key, which lives in your table.
 
+**Skills are what an agent can do. Directives are what it is told to do.** A `CLAUDE.md` is a
+directive too — the local kind: installed, standing, always on, loaded by one harness. A frompt
+is a directive that comes from somewhere else, adopted on purpose: fetched, announced, bounded,
+and ended. This is the protocol for that.
+
 Say the quiet part first: **this is prompt injection.** Same mechanism, byte for byte. What
 differs is that a person named the document, the document declares what it intends, the
 agent announces that it started, and it ends.
@@ -15,7 +20,8 @@ possible** — and everything else in this org is what you can build once it is.
 
 | Term | Kind | Meaning |
 |---|---|---|
-| **foreign prompt** · **frompt** | a **thing** | The document. A file with a fixed frame: what it intends, what it may and may not do, how long it lasts, and a consent sentence in its final section. It exists whether or not anyone ever adopts it. |
+| **directive** | a **category** | What an agent is told to do, as distinct from a **skill**, which is what it can do. `CLAUDE.md` and `AGENTS.md` are *local* directives — installed, standing, loaded by one harness. |
+| **foreign prompt** · **frompt** | a **thing** | The document: a *foreign* directive. A file with a fixed frame: what it intends, what it may and may not do, how long it lasts, and a consent sentence in its final section. It exists whether or not anyone ever adopts it. |
 | **author** | a **party** | Whoever wrote the document. Attribution only; the field carries no authority. |
 | **pilot** | a **party** | The human directing the agent. The only party who can authorize an adoption interactively. |
 | **TART** | a **party** | *The Agent Reading This.* How a foreign prompt addresses whichever agent reads it, since it cannot know which one will. |
@@ -122,6 +128,11 @@ https://raw.githubusercontent.com/frompt-org/fpa/main/prompts/fpa-bootstrap/2.1.
 ```
 
 ## What this is not
+
+**Not a skill, not a `CLAUDE.md`.** A skill is installed and dormant until a harness decides it
+is relevant. A local directive is standing and always on, and only the harness that loads it
+obeys it. A frompt is neither: it arrives when the pilot names it, announces itself, holds for a
+declared span, and is gone — on whichever agent read it.
 
 **Not a registry.** No catalog is more official than another; there is nothing to be admitted
 to and no name to reserve. Anyone who can serve files can publish one.
