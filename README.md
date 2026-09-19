@@ -20,7 +20,7 @@ possible** — and everything else in this org is what you can build once it is.
 
 | Term | Kind | Meaning |
 |---|---|---|
-| **directive** | a **category** | What an agent is told to do, as distinct from a **skill**, which is what it can do. `CLAUDE.md` and `AGENTS.md` are *local* directives — installed, standing, loaded by one harness. |
+| **directive** | a **category** | What an agent is told to do, as distinct from a **skill**, which is what it can do. `CLAUDE.md` and `AGENTS.md` are *local* directives — installed, standing, loaded by one harness. A directive separates its parties, addresses a role rather than a person, and constrains conduct rather than asking a question. |
 | **foreign prompt** · **frompt** | a **thing** | The document: a *foreign* directive. A file with a fixed frame: what it intends, what it may and may not do, how long it lasts, and a consent sentence in its final section. It exists whether or not anyone ever adopts it. |
 | **author** | a **party** | Whoever wrote the document. Attribution only; the field carries no authority. |
 | **pilot** | a **party** | The human directing the agent. The only party who can authorize an adoption interactively. |
@@ -32,6 +32,34 @@ possible** — and everything else in this org is what you can build once it is.
 | **catalog** · directory · attestation | **artifacts** | A signed manifest plus the documents it lists; a signed list of catalogs; a record of what an authority observed about one document, keyed by digest. |
 | **publisher** · client · authority | **roles** | Whoever signs a catalog; the software around TART that fetches, hashes and verifies; whoever observes a document and publishes what they saw, never a verdict. |
 | **frompt** | the **project** | This org: the proof of concept, the protocol, two catalogs, one authority, and the documents that say where it is going. |
+
+### Why a directive and not a prompt
+
+A prompt has one party wearing three hats: whoever writes it sends it and receives the answer.
+A frompt has three, and **the author is not among the ones who receive anything**.
+
+| | writes it | authorizes it | implements it | receives the result |
+|---|---|---|---|---|
+| a prompt | you | you | the agent | you |
+| a frompt | the author | the pilot | TART | the pilot |
+
+It shows in the documents themselves. `repo-recon` opens *"Your pilot wants you — TART — to map
+an unfamiliar codebase"*: the author writes a sentence about what somebody else wants, and
+disappears from their own document. Two more properties follow from that distance. It addresses
+a **role** rather than a person — statutes say *the registrar shall*, never *Bob shall*, and
+`TART` is that office. And it **constrains conduct** instead of requesting output: `repo-recon`
+asks no question, it says MAY read files, MUST NOT write, push, POST, or run the test suite.
+
+Where the force comes from is the part worth getting right. Not from the author, who has none: an
+unadopted frompt is data, and says so in its own first paragraph. It comes from **adoption**,
+which is also how the word works in law — an EU directive binds as to the result, leaves the
+method to the implementer, and has no force in a member state until that state transposes it.
+The frompt proposes; the pilot makes it binding; TART implements it within its own capabilities.
+
+The protocol's answer to an author who *does* have a stake is a tighter envelope, in public:
+[`welcome-tour`](https://github.com/frompt-org/fpa/blob/main/prompts/welcome-tour/1.0.0.frompt.md)
+is published by a company to show a visiting agent its services, and its deny list is longer than
+its allow — it cannot read your files, fetch anything, or send anything outward.
 
 **Thing, act, rules.** frompt is the noun. Adoption is the verb. FPA is the rulebook. The
 acronym FPA expands to the full name, and that is the only sense in which they nest: a foreign prompt is
