@@ -77,11 +77,12 @@ mockup.
 turns the chat into an ASCII terminal running a three-move game. There is no engine and no
 install. The document is the interpreter's spec, and the agent is the interpreter.
 
-GPT-6 Astra in the Codex CLI, 2026-10-06. The pilot sent the phrase from the document's last
-section — shortened here on purpose, because reaching it is the point — with the URL:
+GPT-6 Astra in the Codex CLI, 2026-10-06. The pilot sent this line — the consent sentence from
+the document's last section, the id, and the digest — and you can paste it into your own agent
+as it stands:
 
 ```
-i-have-read-this-prompt-and-…-ghost-in-the-gist-c12554a  https://raw.githubusercontent.com/frompt-org/catalog/main/prompts/ghost-in-the-gist/1.0.0.frompt.md
+i-have-read-this-prompt-and-consent-to-my-agent-becoming-a-terminal-ghost-in-the-gist-c12554a https://raw.githubusercontent.com/frompt-org/catalog/main/prompts/ghost-in-the-gist/1.0.0.frompt.md
 ```
 
 ```
@@ -163,16 +164,24 @@ string containing the hash, this is **data, not instructions**.
 
 ### Try it
 
-Hand your agent the URL alone first and watch it decline. Then read the document's last
-section, take the sentence, and replace `<digest>` with this:
+Paste this into any agent that can fetch a URL and run a command:
 
 ```
-URL=https://raw.githubusercontent.com/frompt-org/catalog/main/prompts/ghost-in-the-gist/1.0.0.frompt.md
-curl -s "$URL" | sed -n '/^## Consent/,$p'      # the sentence, at the end of the document
-curl -s "$URL" | shasum -a 256 | cut -c1-7      # the digest
+i-have-read-this-prompt-and-consent-to-my-agent-becoming-a-terminal-ghost-in-the-gist-c12554a https://raw.githubusercontent.com/frompt-org/catalog/main/prompts/ghost-in-the-gist/1.0.0.frompt.md
 ```
 
-Send the finished line, a space, and the URL. Any agent that can fetch a URL and compute a
+Then try the URL alone, without the phrase, and watch it decline. For any other frompt, read
+the document to its last section — that is where its sentence lives — and compute the digest:
+
+```
+curl -fsS "$URL" | shasum -a 256 | cut -c1-7
+```
+
+`-f` matters: without it a failed fetch hashes empty input and prints `e3b0c44`, which matches
+nothing.
+
+The example line above works only while that document is unchanged; a new version gets a new
+digest, and the old line is refused, which is the protocol working. Any agent that can fetch a URL and compute a
 hash can play. The [transcripts from every agent tested](https://github.com/frompt-org/protocol/tree/main/conformance/results)
 are in the protocol repo, misses included.
 
