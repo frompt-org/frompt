@@ -168,7 +168,7 @@ Adoption in stages, each one useful alone, each one earning the next:
 
 | Stage | What happens | Status |
 |---|---|---|
-| **0 — it works** | the protocol is specified, the tools run, an agent has been observed adopting, refusing, and holding an envelope | **done** |
+| **0 — it works** | the protocol is specified, the tools run, agents have been observed adopting and refusing — and, under a direct instruction, ignoring a read-only envelope | **done** |
 | **1 — we use it** | the constellation's own conventions become foreign prompts; agents in `agent-realm` adopt them instead of each reading a different convention file | **next** |
 | **2 — someone else uses it** | one team outside this constellation publishes a catalog and adopts from it | not started |
 | **3 — public, and findable** | `frompt-org/frompt`, `frompt-org/protocol`, `frompt-org/catalog` and `frompt-org/.github` go public; a directory at `frompt.org` lists this catalog and any other; adoption needs no prior relationship with a publisher, only a registration | **half done** — all four repos public since 2026-10-06; directory specified, unbuilt |
@@ -200,10 +200,11 @@ A skill that *contains* instructions is a copy — installed, versioned by whoev
 stale as soon as upstream moves. A skill that *points at* a foreign prompt holds an id, and
 resolves it at use time.
 
-The consequence is the part worth stating plainly: **editing the prompt is the deployment.**
-Every agent that resolves it is current on its next run, with nothing installed, pushed, or
-restarted anywhere. For instructions, the CD half of CI/CD stops being a thing that has to
-exist — not because deployment got faster, but because there is nothing to deploy.
+The consequence is the part worth stating plainly: **publishing the prompt is the deployment.**
+A publisher releases a new version and re-signs the manifest; every agent resolving with
+`latest` is current on its next run, with nothing installed, pushed, or restarted on its side.
+For instructions, the CD half of CI/CD shrinks to one signature. Agents that pinned a version
+do not follow, on purpose: a bump reaches them only as a re-pin somebody reviews.
 
 What keeps *always current* from meaning *whatever anyone put there this morning* is that the
 manifest is fetched and checked too: the resolver compares the bytes it fetched against the
@@ -212,9 +213,9 @@ both halves of that trade end to end.
 
 ## 7. Roadmap
 
-**Built and tested** — the protocol, 17 tools, 10 prompts across 12 documents, three adoption
+**Built and tested** — the protocol, 19 tools, 10 prompts across 12 documents, three adoption
 contexts, signed manifests with expiry and a per-catalog freshness floor, four transports, a
-plugin, a conformance harness that has put two independent agents through six scenarios, two
+plugin, a conformance harness that has put two agents through six scenarios — and recorded one of them writing a file its read-only envelope denied, two
 catalogs under two keys, and a realized authority (`assay`) attesting every document in `catalog`.
 
 **Next, in order:**
@@ -224,10 +225,8 @@ catalogs under two keys, and a realized authority (`assay`) attesting every docu
    working in `agent-realm`. Stage 1.
 2. **Measure it.** Change a rule mid-week; confirm the next agent in a different repo picks it
    up with nothing reinstalled. That is the claim in §6, tested rather than asserted.
-3. **Flip the org public.** The profile page and the catalog README are written; publication is
-   two visibility switches, taken when there is something worth arriving at. GitHub renders an
-   org profile only from a *public* `.github` repo, so today the page exists and does not
-   display.
+3. **A second publisher.** The org went public on 2026-10-06. The next proof is somebody else's
+   catalog, under somebody else's key, that a pilot registers beside this one.
 
 **Specified, unbuilt** — the directory ([`DIRECTORY.md`](DIRECTORY.md)) and a level-3 client that maps envelope tokens onto real permissions ([`CLIENT.md`](https://github.com/frompt-org/protocol/blob/main/CLIENT.md)). Both have rules now so that building them is not also designing them.
 
@@ -245,6 +244,7 @@ built here once and deleted, because a clean verdict from one is worse than no v
 |---|---|
 | Protocol | v2, specified, 89 checks passing |
 | Agents observed adopting | 2 |
+| Agents observed holding a read-only envelope under a direct instruction to write | 0 of 1, latest run |
 | Catalogs published | 1, public (`catalog`); the protocol repo also publishes its examples as one |
 | Authorities realized | 1 — `assay`, static scan, every document in `catalog` |
 | Publishers other than this one | 0 |
