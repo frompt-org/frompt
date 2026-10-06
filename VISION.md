@@ -73,10 +73,10 @@ and is deliberately not the only publisher the protocol expects:
 
 | Repo | Role | Status |
 |---|---|---|
-| [`frompt-org/frompt`](https://github.com/frompt-org/frompt) | the umbrella — this homepage, the project documents, pointers to everything else | exists, **private** |
-| [`frompt-org/protocol`](https://github.com/frompt-org/protocol) | the protocol — spec, tools, the example frompts the docs adopt (published as a small signed catalog of their own), conformance harness | exists, **private** |
-| [`frompt-org/catalog`](https://github.com/frompt-org/catalog) | the catalog people register — own key, attested by `assay` | exists, **private** |
-| [`frompt-org/.github`](https://github.com/frompt-org/.github) | the org's public face — what a foreign prompt is, the three doors out, what an agent landing there should do | exists, **private** |
+| [`frompt-org/frompt`](https://github.com/frompt-org/frompt) | the umbrella — this homepage, the project documents, pointers to everything else | exists, **public** |
+| [`frompt-org/protocol`](https://github.com/frompt-org/protocol) | the protocol — spec, tools, the example frompts the docs adopt (published as a small signed catalog of their own), conformance harness | exists, **public** |
+| [`frompt-org/catalog`](https://github.com/frompt-org/catalog) | the catalog people register — own key, attested by `assay` | exists, **public** |
+| [`frompt-org/.github`](https://github.com/frompt-org/.github) | the org's public face — what a foreign prompt is, the three doors out, what an agent landing there should do | exists, **public** |
 
 The protocol was born in the `agent-realm` constellation and moved out on 2026-09-09, before
 anything was published. The constellation is meant to be this protocol's first **consumer**,
@@ -171,7 +171,7 @@ Adoption in stages, each one useful alone, each one earning the next:
 | **0 — it works** | the protocol is specified, the tools run, an agent has been observed adopting, refusing, and holding an envelope | **done** |
 | **1 — we use it** | the constellation's own conventions become foreign prompts; agents in `agent-realm` adopt them instead of each reading a different convention file | **next** |
 | **2 — someone else uses it** | one team outside this constellation publishes a catalog and adopts from it | not started |
-| **3 — public, and findable** | `frompt-org/frompt`, `frompt-org/protocol`, `frompt-org/catalog` and `frompt-org/.github` go public; a directory at `frompt.org` lists this catalog and any other; adoption needs no prior relationship with a publisher, only a registration | written, not flipped; directory specified, unbuilt |
+| **3 — public, and findable** | `frompt-org/frompt`, `frompt-org/protocol`, `frompt-org/catalog` and `frompt-org/.github` go public; a directory at `frompt.org` lists this catalog and any other; adoption needs no prior relationship with a publisher, only a registration | **half done** — all four repos public since 2026-10-06; directory specified, unbuilt |
 | **4 — attestation** | authorities observe prompts and publish findings keyed by digest; pilots choose whose observations they value | reserved, unbuilt |
 
 Stage 1 is the honest test. A protocol whose author will not run their own conventions through
@@ -245,7 +245,7 @@ built here once and deleted, because a clean verdict from one is worse than no v
 |---|---|
 | Protocol | v2, specified, 89 checks passing |
 | Agents observed adopting | 2 |
-| Catalogs published | 1, private (`catalog`); the protocol repo also publishes its examples as one |
+| Catalogs published | 1, public (`catalog`); the protocol repo also publishes its examples as one |
 | Authorities realized | 1 — `assay`, static scan, every document in `catalog` |
 | Publishers other than this one | 0 |
 | Pilots other than the author | 0 |
