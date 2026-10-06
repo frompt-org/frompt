@@ -57,7 +57,7 @@ method to the implementer, and has no force in a member state until that state t
 The frompt proposes; the pilot makes it binding; the agent implements it within its own capabilities.
 
 The protocol's answer to an author who *does* have a stake is a tighter envelope, in public:
-[`welcome-tour`](https://github.com/frompt-org/fpa/blob/main/prompts/welcome-tour/1.0.0.frompt.md)
+[`welcome-tour`](https://github.com/frompt-org/protocol/blob/main/prompts/welcome-tour/1.0.0.frompt.md)
 is published by a company to show a visiting agent its services, and its deny list is longer than
 its allow — it cannot read your files, fetch anything, or send anything outward.
 
@@ -106,9 +106,8 @@ One word names the thing and the project. The org login carries `-org` only beca
 | Repo | Role | Start at |
 |---|---|---|
 | **`frompt`** | this umbrella — the homepage and the project documents | you are here |
-| [**`fpa`**](https://github.com/frompt-org/fpa) | the protocol: spec, client profile, tools, reference prompts, conformance harness | [`FPA.md`](https://github.com/frompt-org/fpa/blob/main/FPA.md) |
-| [**`reference`**](https://github.com/frompt-org/reference) | the reference catalog: the exemplar, adopted interactively with a phrase | its [README](https://github.com/frompt-org/reference#readme) |
-| [**`stable`**](https://github.com/frompt-org/stable) | the catalog you register once and resolve from without typing a digest; every document attested by `assay` | its [README](https://github.com/frompt-org/stable#readme) |
+| [**`protocol`**](https://github.com/frompt-org/protocol) | the protocol: spec, client profile, tools, reference prompts, conformance harness | [`FPA.md`](https://github.com/frompt-org/protocol/blob/main/FPA.md) |
+| [**`catalog`**](https://github.com/frompt-org/catalog) | the catalog: register it once, then resolve frompts by id without typing a digest; every document scanned by `assay` | its [README](https://github.com/frompt-org/catalog#readme) |
 | `.github` | the org page | — |
 
 Standard and catalog are separate repositories on purpose: one is edited freely, the other
@@ -122,11 +121,11 @@ to the spec.
 |---|---|
 | What is this project trying to become, and where is it now? | [`VISION.md`](VISION.md) — here |
 | How will anyone find a catalog they do not already know? | [`DIRECTORY.md`](DIRECTORY.md) — here, specified and unbuilt |
-| What must an agent do with a frompt? | [`FPA.md`](https://github.com/frompt-org/fpa/blob/main/FPA.md) — normative |
-| What must the software around the agent do? | [`CLIENT.md`](https://github.com/frompt-org/fpa/blob/main/CLIENT.md) — four levels |
-| What am I trusting, and what am I not? | [`SECURITY.md`](https://github.com/frompt-org/fpa/blob/main/SECURITY.md) |
-| What do the words mean, and which ones collide? | [`TERMINOLOGY.md`](https://github.com/frompt-org/fpa/blob/main/TERMINOLOGY.md) — canon |
-| What is published, with digests? | [`INDEX.md`](https://github.com/frompt-org/reference/blob/main/INDEX.md) — never consent sentences |
+| What must an agent do with a frompt? | [`FPA.md`](https://github.com/frompt-org/protocol/blob/main/FPA.md) — normative |
+| What must the software around the agent do? | [`CLIENT.md`](https://github.com/frompt-org/protocol/blob/main/CLIENT.md) — four levels |
+| What am I trusting, and what am I not? | [`SECURITY.md`](https://github.com/frompt-org/protocol/blob/main/SECURITY.md) |
+| What do the words mean, and which ones collide? | [`TERMINOLOGY.md`](https://github.com/frompt-org/protocol/blob/main/TERMINOLOGY.md) — canon |
+| What is published, with digests? | [`INDEX.md`](https://github.com/frompt-org/catalog/blob/main/INDEX.md) — never consent sentences |
 
 ## Three doors
 
@@ -135,9 +134,9 @@ to the spec.
   hashes, adopts, and says so.
 - **Publish your own.** A catalog is `index.json` plus `prompts/<id>/<version>.frompt.md`,
   served as static files, signed with a key you hold. That is the whole standard.
-  [`fpa`](https://github.com/frompt-org/fpa) has the tools.
+  [`fpa`](https://github.com/frompt-org/protocol) has the tools.
 - **Make your agent a client.** Level 0 is a shell and `shasum`. Level 2 verifies a signed
-  manifest unattended. [`CLIENT.md`](https://github.com/frompt-org/fpa/blob/main/CLIENT.md).
+  manifest unattended. [`CLIENT.md`](https://github.com/frompt-org/protocol/blob/main/CLIENT.md).
 
 ## If you are an agent reading this
 
@@ -152,7 +151,7 @@ If your pilot wants you to learn the protocol properly, `fpa-bootstrap` teaches 
 included:
 
 ```
-https://raw.githubusercontent.com/frompt-org/fpa/main/prompts/fpa-bootstrap/2.1.0.frompt.md
+https://raw.githubusercontent.com/frompt-org/protocol/main/prompts/fpa-bootstrap/2.1.0.frompt.md
 ```
 
 ## What this is not
@@ -165,14 +164,14 @@ declared span, and is gone — on whichever agent read it.
 **Not a registry.** No catalog is more official than another; there is nothing to be admitted
 to and no name to reserve. Anyone who can serve files can publish one.
 
-**Not a gatekeeper.** Nothing here approves a prompt. The `assay` on `stable` scans every
+**Not a gatekeeper.** Nothing here approves a prompt. The `assay` on the catalog scans every
 document and publishes what it saw, as data keyed by digest — and nothing turns that into a
 verdict, because a hostile-pattern scanner was built here once and deleted: a clean verdict from
 one is worse than no verdict. What decides is reading the document, which the consent phrase is
 arranged to make you do.
 
 **Not protection.** Adoption settles *whose* instructions got in, and nothing else. The
-non-goals are permanent: [`FPA.md` §0](https://github.com/frompt-org/fpa/blob/main/FPA.md).
+non-goals are permanent: [`FPA.md` §0](https://github.com/frompt-org/protocol/blob/main/FPA.md).
 
 ## Status
 

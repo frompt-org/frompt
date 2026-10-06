@@ -28,7 +28,7 @@ This repository used *index* for the third thing once. It does not any more.
   copy-paste machine the ceremony exists to prevent (§C3, §PV1). Same rule as `INDEX.md`, one
   level up.
 - **D3.** A directory **MUST NOT** rank. Entries are ordered by name. Popularity, recency and
-  "verified" badges are all a verdict, and [`FPA.md`](https://github.com/frompt-org/fpa/blob/main/FPA.md) §15 already settled that this
+  "verified" badges are all a verdict, and [`FPA.md`](https://github.com/frompt-org/protocol/blob/main/FPA.md) §15 already settled that this
   project publishes observations and never verdicts.
 - **D4.** Listing is not admission and not endorsement; removal is not revocation. A catalog
   works exactly the same whether or not any directory lists it — that is what *a shape, not a

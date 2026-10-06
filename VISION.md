@@ -1,6 +1,6 @@
 # Vision — what this project is trying to become
 
-[`FPA.md`](https://github.com/frompt-org/fpa/blob/main/FPA.md) is the protocol: what a foreign prompt is and what an agent does with one.
+[`FPA.md`](https://github.com/frompt-org/protocol/blob/main/FPA.md) is the protocol: what a foreign prompt is and what an agent does with one.
 This document is the **project** — why it exists beyond one repo, where prompts are meant to
 live, who publishes them, and what is still missing. It is the answer to *where is this going*,
 kept separate from the spec so the spec can stay normative and short.
@@ -36,11 +36,11 @@ for *instructions* has to carry, because unlike a package, a prompt steers the a
 
 | Party | Who | What they do | Needs |
 |---|---|---|---|
-| **author** | anyone | writes a document addressed to `TART`, declares its envelope, publishes a consent sentence in its last section | [`TEMPLATE.frompt.md`](https://github.com/frompt-org/fpa/blob/main/TEMPLATE.frompt.md), `fp-new`, `fp-lint` |
+| **author** | anyone | writes a document addressed to `TART`, declares its envelope, publishes a consent sentence in its last section | [`TEMPLATE.frompt.md`](https://github.com/frompt-org/protocol/blob/main/TEMPLATE.frompt.md), `fp-new`, `fp-lint` |
 | **publisher** | anyone who can serve files | signs a manifest over a set of documents and serves it | `fp-index`, `fp-sign`, `fp-publish` |
 | **pilot** | anyone with an agent | names one document, authorizes it, ends it | a phrase, or a pin, or a signature |
-| **client** | a harness, a plugin, a shell | does what a model cannot: fetches exact bytes, hashes, verifies, keeps the lock and the record | [`CLIENT.md`](https://github.com/frompt-org/fpa/blob/main/CLIENT.md), levels 0–3 |
-| **authority** | *reserved, unbuilt* | runs a submitted prompt in isolation and publishes what it observed | [`FPA.md` §15](https://github.com/frompt-org/fpa/blob/main/FPA.md) |
+| **client** | a harness, a plugin, a shell | does what a model cannot: fetches exact bytes, hashes, verifies, keeps the lock and the record | [`CLIENT.md`](https://github.com/frompt-org/protocol/blob/main/CLIENT.md), levels 0–3 |
+| **authority** | *reserved, unbuilt* | runs a submitted prompt in isolation and publishes what it observed | [`FPA.md` §15](https://github.com/frompt-org/protocol/blob/main/FPA.md) |
 
 Author and publisher are usually the same person and do not have to be. Pilot and author are
 frequently the same person too — **the common case is your own prompts, in your own repos, fed
@@ -64,7 +64,7 @@ and serves it wherever it already serves static files; a person publishes from a
 `base` is any transport that returns exact bytes — public HTTPS, a `gh:` reference to a private
 repo, an internal host, a local path. Trust arrives through a **publisher key held locally**,
 never through the catalog it validates, so a private catalog is a complete deployment rather
-than a degraded one. See [`README.md`](https://github.com/frompt-org/fpa/blob/main/README.md) for the working commands.
+than a degraded one. See [`README.md`](https://github.com/frompt-org/protocol/blob/main/README.md) for the working commands.
 
 ### The org
 
@@ -74,9 +74,8 @@ and is deliberately not the only publisher the protocol expects:
 | Repo | Role | Status |
 |---|---|---|
 | [`frompt-org/frompt`](https://github.com/frompt-org/frompt) | the umbrella — this homepage, the project documents, pointers to everything else | exists, **private** |
-| [`frompt-org/fpa`](https://github.com/frompt-org/fpa) | the protocol — spec, tools, reference prompts, conformance harness | exists, **private** |
-| [`frompt-org/reference`](https://github.com/frompt-org/reference) | the reference catalog — the exemplar; what the docs and the conformance suite point at | exists, **private** |
-| [`frompt-org/stable`](https://github.com/frompt-org/stable) | the catalog you register — own key, seeded from reference, attested by `assay` | exists, **private** |
+| [`frompt-org/protocol`](https://github.com/frompt-org/protocol) | the protocol — spec, tools, the example frompts the docs adopt (published as a small signed catalog of their own), conformance harness | exists, **private** |
+| [`frompt-org/catalog`](https://github.com/frompt-org/catalog) | the catalog people register — own key, attested by `assay` | exists, **private** |
 | [`frompt-org/.github`](https://github.com/frompt-org/.github) | the org's public face — what a foreign prompt is, the three doors out, what an agent landing there should do | exists, **private** |
 
 The protocol was born in the `agent-realm` constellation and moved out on 2026-09-09, before
@@ -90,22 +89,26 @@ crosses that boundary deliberately, and refuses to overwrite a published version
 bytes. That a catalog is its own small repo is also the demonstration of the claim above — it is
 a shape anyone can serve, and this one is not special for sitting next to the spec.
 
-### Catalogs are contexts
+### Who supplies the digest
 
-Each catalog exists for one adoption context, and the difference is who supplies the digest.
+The three adoption contexts differ in one thing: who supplies the digest, and when.
 
-| Catalog | Context | The pilot supplies | Trusts | Like |
+| Where it comes from | Context | The pilot supplies | Trusts | Like |
 |---|---|---|---|---|
-| **reference** | interactive | the phrase, digest included, per adoption | this document | reading a script before you run it |
-| **stable** | registered | a registration, once; then nothing | the `frompt-stable` key | apt, npm, yum |
+| any frompt at a URL | interactive | the phrase, digest included, per adoption | this document | reading a script before you run it |
+| **`catalog`** | registered | a registration, once; then nothing | the `frompt-catalog` key | apt, npm, yum |
 | **yours** | managed | operator policy | your key | an internal package mirror |
 
 *Without a digest* means the pilot stops typing one. The digest moves from the phrase into the
 signed manifest, and the client checks every fetched document against it. Nobody types a
 SHA256 for apt either; `Release` carries them, signed.
 
+There was briefly a second org catalog, `reference`, meant as the exemplar for interactive use.
+It held the same bytes as `catalog` and its job was already done by the protocol repo, which
+publishes the example frompts as a signed catalog of its own. Retired 2026-10-06, archived.
+
 The managed instance is not ours to build. The first one is stage 1: agent-realm's own
-catalog, its conventions as prompts, under the constellation's key.
+catalog, its conventions as frompts, under the constellation's key.
 
 ### The pipeline — a registry without a server
 
@@ -113,9 +116,9 @@ What npm is to packages, this org is to foreign prompts, and it needs no server:
 
 | Piece | Is | Name |
 |---|---|---|
-| the catalog people register | a repo with a signed manifest | `stable` |
+| the catalog people register | a repo with a signed manifest | `catalog` |
 | how catalogs are found | a signed `directory.json` | `directory` |
-| inspection and attestation | a workflow on `stable` that runs a scanner and commits what it saw | **`assay`** |
+| inspection and attestation | a workflow on `catalog` that runs a scanner and commits what it saw | **`assay`** |
 | the front | a static site rendering the three | `frompt.org` |
 
 Submissions are pull requests. Nothing is admitted, ranked or approved. Anyone who can serve
@@ -128,7 +131,7 @@ approves the gold. Customs admits or refuses, which is a gate, which this is not
 
 `assay` runs [SkillSpector](https://github.com/NVIDIA/SkillSpector) — NVIDIA's scanner for agent
 skills, sixteen thousand stars — over every document and stores its output keyed by digest,
-as data ([`FPA.md` §15](https://github.com/frompt-org/fpa/blob/main/FPA.md), AT1–AT6). Static
+as data ([`FPA.md` §15](https://github.com/frompt-org/protocol/blob/main/FPA.md), AT1–AT6). Static
 mode, no LLM stage. First run, 2026-09-09:
 
 | Document | Score | Flags |
@@ -168,7 +171,7 @@ Adoption in stages, each one useful alone, each one earning the next:
 | **0 — it works** | the protocol is specified, the tools run, an agent has been observed adopting, refusing, and holding an envelope | **done** |
 | **1 — we use it** | the constellation's own conventions become foreign prompts; agents in `agent-realm` adopt them instead of each reading a different convention file | **next** |
 | **2 — someone else uses it** | one team outside this constellation publishes a catalog and adopts from it | not started |
-| **3 — public, and findable** | `frompt-org/reference` and `frompt-org/.github` go public; a directory at `frompt.org` lists this catalog and any other; adoption needs no prior relationship with a publisher, only a registration | written, not flipped; directory specified, unbuilt |
+| **3 — public, and findable** | `frompt-org/frompt`, `frompt-org/protocol`, `frompt-org/catalog` and `frompt-org/.github` go public; a directory at `frompt.org` lists this catalog and any other; adoption needs no prior relationship with a publisher, only a registration | written, not flipped; directory specified, unbuilt |
 | **4 — attestation** | authorities observe prompts and publish findings keyed by digest; pilots choose whose observations they value | reserved, unbuilt |
 
 Stage 1 is the honest test. A protocol whose author will not run their own conventions through
@@ -212,7 +215,7 @@ both halves of that trade end to end.
 **Built and tested** — the protocol, 17 tools, 10 prompts across 12 documents, three adoption
 contexts, signed manifests with expiry and a per-catalog freshness floor, four transports, a
 plugin, a conformance harness that has put two independent agents through six scenarios, two
-catalogs under two keys, and a realized authority (`assay`) attesting every document in `stable`.
+catalogs under two keys, and a realized authority (`assay`) attesting every document in `catalog`.
 
 **Next, in order:**
 
@@ -226,13 +229,13 @@ catalogs under two keys, and a realized authority (`assay`) attesting every docu
    org profile only from a *public* `.github` repo, so today the page exists and does not
    display.
 
-**Specified, unbuilt** — the directory ([`DIRECTORY.md`](DIRECTORY.md)) and a level-3 client that maps envelope tokens onto real permissions ([`CLIENT.md`](https://github.com/frompt-org/fpa/blob/main/CLIENT.md)). Both have rules now so that building them is not also designing them.
+**Specified, unbuilt** — the directory ([`DIRECTORY.md`](DIRECTORY.md)) and a level-3 client that maps envelope tokens onto real permissions ([`CLIENT.md`](https://github.com/frompt-org/protocol/blob/main/CLIENT.md)). Both have rules now so that building them is not also designing them.
 
-**Reserved, deliberately unbuilt** — the `run` kind of attestation and the authority *service* (the `static-scan` kind is realized by `assay`) ([`FPA.md` §15](https://github.com/frompt-org/fpa/blob/main/FPA.md)), role scoping in the
+**Reserved, deliberately unbuilt** — the `run` kind of attestation and the authority *service* (the `static-scan` kind is realized by `assay`) ([`FPA.md` §15](https://github.com/frompt-org/protocol/blob/main/FPA.md)), role scoping in the
 manifest, and key rotation. Each has a seam so it can arrive without a protocol change; none has
 a use case sharp enough yet to design against.
 
-**Never** — the non-goals in [`FPA.md` §0](https://github.com/frompt-org/fpa/blob/main/FPA.md) are permanent. This does not become a sandbox,
+**Never** — the non-goals in [`FPA.md` §0](https://github.com/frompt-org/protocol/blob/main/FPA.md) are permanent. This does not become a sandbox,
 a scanner, or a defence against a publisher you chose to trust. A hostile-pattern scanner was
 built here once and deleted, because a clean verdict from one is worse than no verdict.
 
@@ -242,8 +245,8 @@ built here once and deleted, because a clean verdict from one is worse than no v
 |---|---|
 | Protocol | v2, specified, 89 checks passing |
 | Agents observed adopting | 2 |
-| Catalogs published | 2, private (reference, stable) |
-| Authorities realized | 1 — `assay`, static scan, every document in stable |
+| Catalogs published | 1, private (`catalog`); the protocol repo also publishes its examples as one |
+| Authorities realized | 1 — `assay`, static scan, every document in `catalog` |
 | Publishers other than this one | 0 |
 | Pilots other than the author | 0 |
 
