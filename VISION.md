@@ -64,7 +64,7 @@ and serves it wherever it already serves static files; a person publishes from a
 `base` is any transport that returns exact bytes — public HTTPS, a `gh:` reference to a private
 repo, an internal host, a local path. Trust arrives through a **publisher key held locally**,
 never through the catalog it validates, so a private catalog is a complete deployment rather
-than a degraded one. See [`README.md`](https://github.com/frompt-org/protocol/blob/main/README.md) for the working commands.
+than a degraded one. See [the publishing tutorial](https://github.com/frompt-org/protocol/blob/main/docs/tutorials/03-publish-a-catalog.md) for the working commands.
 
 ### The org
 

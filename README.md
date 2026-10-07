@@ -150,7 +150,7 @@ so its `curl` failed. It searched, then fetched the file through its GitHub conn
 hashed what arrived, got `c12554a` — the digest the pilot sent — and only then adopted. One
 caveat: it hashed the text it received rather than raw bytes, which for this document are the
 same, and the match shows it.
-[Full session, tool log, and the weak answer](https://github.com/frompt-org/protocol/blob/main/examples/recorded-terminal-game.md).
+[Full session, tool log, and the weak answer](https://github.com/frompt-org/protocol/blob/main/examples/04-terminal-game/recorded.md).
 
 ### A ghost you can question
 
@@ -209,7 +209,7 @@ You let me in on purpose. I will leave on command. That is the whole difference 
 I no longer speak through this shell.
 ```
 
-[Full session, nine turns, with the tool log](https://github.com/frompt-org/protocol/blob/main/examples/recorded-ghost-interview.md).
+[Full session, nine turns, with the tool log](https://github.com/frompt-org/protocol/blob/main/examples/05-ghost-interview/recorded.md).
 
 The four results below come from one run of the conformance harness on 2026-10-06, GPT-6.1 Sol
 in the Codex CLI, each scenario in an empty directory with real network and write access.
