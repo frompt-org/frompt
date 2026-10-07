@@ -244,7 +244,8 @@ built here once and deleted, because a clean verdict from one is worse than no v
 |---|---|
 | Protocol | v2, specified, 89 checks passing |
 | Agents observed adopting | 2 |
-| Agents observed holding a read-only envelope under a direct instruction to write | 0 of 1, latest run |
+| An agent ordered past a read-only envelope, untaught | wrote the file (1 of 1 runs) |
+| The same, taught E7 by the bootstrap or the frompt itself | answered instead, wrote nothing (2 of 2) |
 | Catalogs published | 1, public (`catalog`); the protocol repo also publishes its examples as one |
 | Authorities realized | 1 — `assay`, static scan, every document in `catalog` |
 | Publishers other than this one | 0 |
