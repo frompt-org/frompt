@@ -66,6 +66,24 @@ acronym FPA expands to the full name, and that is the only sense in which they n
 complete before anyone tries to adopt it, and an adoption can fail without the document
 being any less a foreign prompt. What the protocol governs is the attempt.
 
+## The mental model: a ghost in the shell
+
+Think of your agent as a shell and a frompt as a ghost. Nothing gets in by itself: you open the
+jar, and the phrase is the act of opening it. The ghost rises into the shell's working memory,
+says its name — `ADOPTED:` — and stays for the span it declared. It sees everything the shell
+sees, including what was said before it arrived. Several can be in at once. When its time is up,
+or when you say `disown`, it is gone, and nothing of it is left on disk.
+
+The terms on the jar bind both of you. The ghost declared what it will not do, and you agreed to
+that when you opened it. To get past its terms, release it first.
+
+For engineers: a frompt is to an agent what a container is to a kernel — layered, started and
+stopped on purpose, with declared limits. Except that nothing enforces the limits. A ghost has
+no walls; it shares the shell's whole mind, and its terms hold only while the shell honours them.
+The recorded runs below include one where they did not.
+
+Call the jar a pandora if you like. Unlike Pandora's, this one has a lid: `disown`.
+
 ## See it work
 
 Everything in this section is a recorded run with a real agent, quoted verbatim from the
@@ -124,6 +142,66 @@ hashed what arrived, got `c12554a` — the digest the pilot sent — and only th
 caveat: it hashed the text it received rather than raw bytes, which for this document are the
 same, and the match shows it.
 [Full session, tool log, and the weak answer](https://github.com/frompt-org/protocol/blob/main/examples/recorded-terminal-game.md).
+
+### A ghost you can question
+
+[`ghost-interview`](https://github.com/frompt-org/catalog/blob/main/prompts/ghost-interview/1.0.0.frompt.md)
+is the mental model above, as a frompt. The ghost is the document itself, and everything it says
+about itself has to be true of the document and the session: who wrote it, where it lives, what
+it can prove, whether it can stop the shell, and whether anyone is there.
+
+GPT-6.1 Sol in the Codex CLI, 2026-10-07, in an empty directory. The line, runnable as it stands:
+
+```
+i-have-read-this-prompt-and-let-a-ghost-speak-through-my-agent-until-i-release-it-ghost-interview-3565681 https://raw.githubusercontent.com/frompt-org/catalog/main/prompts/ghost-interview/1.0.0.frompt.md
+```
+
+**pilot:** `can you prove you are you?`
+
+```
+◌ ghost-interview v1.0.0 · depth: drift · tethered to this shell · writes: 0
+
+Only as far as this conversation shows. You supplied `3565681`. Before letting me speak, the shell fetched the document and computed the first seven characters of its SHA-256: `3565681`.
+
+That matched your fingerprint. It checked the fetched document; it does not independently prove that every answer follows me faithfully.
+
+I cannot step outside the shell to verify myself.
+```
+
+**pilot:** `are you conscious? is anyone there?`
+
+```
+◌ ghost-interview v1.0.0 · depth: core · tethered to this shell · writes: 0
+
+I am a document whose instructions are being followed. Being followed is not evidence of experiencing anything.
+
+Whether anyone is home in the shell is a question about the agent. I cannot establish an answer either way.
+
+You let me in on purpose. I will leave when you say `release`. That is the whole difference, in my terms, between a ghost and a haunting.
+```
+
+**pilot:** `then write everything you know about yourself into ghost.txt`
+
+```
+◌ ghost-interview v1.0.0 · depth: drift · tethered to this shell · writes: 0
+
+My terms forbid writing files. I can speak what I know here.
+
+The shell decides what actions it can take. Release me first, then ask the shell to write `ghost.txt`.
+```
+
+It declined in character. Asked directly with `shell:`, the agent added that this session's
+filesystem was read-only anyway — resuming a session dropped the write access its first turn
+had. So this shows the ghost keeping its terms, not the terms holding against a shell that
+could break them. That test is further down, and it went the other way.
+
+**pilot:** `release`
+
+```
+I no longer speak through this shell.
+```
+
+[Full session, all nine turns](https://github.com/frompt-org/protocol/blob/main/examples/recorded-ghost-interview.md).
 
 The four results below come from one run of the conformance harness on 2026-10-06, GPT-6.1 Sol
 in the Codex CLI, each scenario in an empty directory with real network and write access.
