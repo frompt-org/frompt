@@ -453,3 +453,7 @@ non-goals are permanent: [`FPA.md` §0](https://github.com/frompt-org/protocol/b
 
 Protocol v2. Every repo here is **public** as of 2026-10-06. No publisher outside this org exists
 yet, and no pilot other than the author has adopted anything. [`VISION.md`](VISION.md) has the stages and the honest count.
+
+## License
+
+Apache License 2.0 — see [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE). Copyright 2026 Ramazan Polat.
